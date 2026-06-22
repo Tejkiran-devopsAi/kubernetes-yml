@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      devops: ai
+  template:
+    metadata:
+      labels:
+        devops: ai
+    spec:
+      containers:
+        - name: deploy
+          image: devopstej/frontend
+          ports:
+            - containerPort: 3000

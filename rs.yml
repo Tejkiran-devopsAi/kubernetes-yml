@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1 
+kind: ReplicaSet
+metadata:
+  name: myrs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+     env: kumar
+  template:
+    metadata:
+     labels:
+      env: kumar
+    spec:
+     containers:
+      - name: rs1
+        image: devopstej/app
+        ports:
+         - containerPort: 8080  

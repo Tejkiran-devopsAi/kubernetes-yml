@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sts
+spec:
+  serviceName: "service"
+  replicas: 5
+  selector:
+   matchLabels:
+    suku: env
+  template:
+    metadata:
+      labels:
+        suku: env
+    spec:
+      containers:
+        - name: kumar
+          image: devopstej/app
+          ports:
+            - containerPort: 8080

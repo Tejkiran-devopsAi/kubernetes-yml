@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata: 
+ name: ds
+ namespace: kumar
+spec:
+  selector: 
+   matchLabels:
+     sukku: peddi
+  template:
+     metadata:
+       labels:
+         sukku: peddi
+     spec:
+       containers:
+         - name: dm1
+           image: nginx
+           ports:
+             - containerPort: 80

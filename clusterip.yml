@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cluster
+spec:
+  type: ClusterIP
+  selector:
+    suku: peddi
+  ports:
+    - port: 80
+      targetPort: 8080
+

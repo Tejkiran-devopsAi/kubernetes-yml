@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: ReplicationController 
+metadata:
+  name: rc1
+spec:
+  replicas: 3
+  selector:
+    env: tej
+  template:
+    metadata:
+      labels:
+        env: tej
+    spec:
+      containers:
+        - name: tej2
+          image: devopstej/frontend
+          ports:
+           - containerPort: 3000    
