@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pap
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: tej
+            operator: In
+            values:
+            - kiran
+        topologyKey: kubernetes.io/hostname
+  containers:
+  - name: pap1
+    image: nginx
+    ports:
+    - containerPort: 80

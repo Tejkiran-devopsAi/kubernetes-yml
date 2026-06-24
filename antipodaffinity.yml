@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: paa2
+spec:
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: tej
+                operator: In
+                values:
+                  - kiran
+          topologyKey: kubernetes.io/hostname
+  containers:
+    - name: tej
+      image: nginx
+      ports:
+        - containerPort: 80

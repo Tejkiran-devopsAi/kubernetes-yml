@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod2
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+         - matchExpressions:
+            - key: app
+              operator: In
+              values:
+                - db
+  containers:
+    - name: tej
+      image: nginx
+      ports:
+        - containerPort: 80
