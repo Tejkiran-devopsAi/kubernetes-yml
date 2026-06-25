@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: job1
+spec:
+  schedule: "* * * * *"
+
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: tej
+            image: ubuntu:22.04
+            command:
+            - /bin/bash
+            - -c
+            - |
+              apt update -y
+              sleep 20
+              echo "Job completed"
+
+          restartPolicy: Never
