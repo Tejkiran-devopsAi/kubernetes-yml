@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: slack-webhook
+  namespace: monitoring
+  labels:
+    release: prometheus
+type: Opaque
+stringData:
+  slack_webhook_url: " "
+
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: spring-alertmanager-config
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  route:
+    receiver: slack-notification
+    groupBy:
+      - alertname
+    groupWait: 30s
+    groupInterval: 5m
+    repeatInterval: 1h
+
+  receivers:
+    - name: slack-notification
+      slackConfigs:
+        - channel: "#alert-messaging"
+          sendResolved: true
+          apiURL:
+            name: slack-webhook
+            key: slack_webhook_url
+          title: "🚨 Kubernetes Alert"
+          text: |
+            *Alert:* {{ .CommonLabels.alertname }}
+            *Severity:* {{ .CommonLabels.severity }}
+            *Namespace:* {{ .CommonLabels.namespace }}
+            *Description:* {{ .CommonAnnotations.description }}
+## - channel: "add your channel name in slack"
+##  slack_webhook_url: "add your webhook of the slack"
