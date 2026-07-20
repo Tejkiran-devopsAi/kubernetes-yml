@@ -1,0 +1,13 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: tej-clusterrolebinding
+subject:
+  - kind: User
+    name: tej
+    apiGroup: rbac.authorization.k8s.io/v1
+roleRef:
+  kind: Role
+  name: tej-role
+  apiGroup: rbac.authorization.k8s.io/v1
