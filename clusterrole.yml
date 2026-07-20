@@ -1,0 +1,9 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+ name: tej-clusterrole
+rules:
+ - apiGroups: ["]
+   resource: ["pod"]
+   verbs: ["delete","create","gets","watch","lists"]
